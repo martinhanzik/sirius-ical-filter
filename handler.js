@@ -105,6 +105,7 @@ module.exports.query = async (event, context) => {
         };
 
     } catch (err) {
+        console.log(err);
         if (err instanceof CustomError) {
             return {
                 statusCode: err.statusCode,
@@ -116,7 +117,7 @@ module.exports.query = async (event, context) => {
         return {
             statusCode: 500,
             body: JSON.stringify({
-                message: err,
+                message: err.message,
             }),
         };
     }
