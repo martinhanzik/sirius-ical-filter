@@ -53,17 +53,17 @@ module.exports.query = async (event, context) => {
                 if (!ev.categories) {
                     continue;
                 }
-                for (let c in ev.categories) {
-                    if (ev.categories[c] === 'přednáška') {
+                ev.categories.forEach(function(c) {
+                    if (c === 'přednáška') {
                         lecture = true;
                     }
-                    else if (ev.categories[c] === 'cvičení') {
+                    else if (c === 'cvičení') {
                         seminar = true;
                     }
-                    else if (ev.categories[c].startsWith('FI-') || ev.categories[c].startsWith('B')) {
-                        subject = ev.categories[c];
+                    else if (c.startsWith('FI-') || c.startsWith('B')) {
+                        subject = c;
                     }
-                }
+                });
 
                 if (lecture && seminar || !subject) {
                     throw new CustomError('Invalid event', 500);
