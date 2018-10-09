@@ -85,11 +85,8 @@ module.exports.query = async (event, context) => {
 
                 if (ok) {
                     newcal.createEvent({
-                        start: ev.start,
-                        end: ev.end,
-                        summary: ev.summary,
-                        description: ev.description,
-                        location: ev.location,
+                        ...ev,
+                        categories: ev.categories.map(function(c){ return {name: c}}),
                         url: ev.url + '?access_token=' + token,
                     });
                 }
