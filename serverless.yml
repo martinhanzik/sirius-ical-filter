@@ -1,0 +1,20 @@
+service: ical-filter
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  profile: personal
+
+functions:
+  query:
+    handler: handler.query
+    events:
+    - http:
+        path: query/{username}
+        method: get
+        request:
+          parameters:
+            querystrings:
+              access_token: true
+            paths:
+              username: true
