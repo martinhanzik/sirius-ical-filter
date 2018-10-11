@@ -88,6 +88,7 @@ module.exports.query = async (event, context) => {
                         ...ev,
                         categories: ev.categories.map(function(c){ return {name: c}}),
                         url: ev.url + '?access_token=' + token,
+                        timezone: 'Europe/Prague'
                     });
                 }
             }

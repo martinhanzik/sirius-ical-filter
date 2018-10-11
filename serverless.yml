@@ -3,6 +3,8 @@ service: ical-filter
 provider:
   name: aws
   runtime: nodejs8.10
+  memorySize: 128
+  timeout: 20
   profile: personal
 
 functions:
